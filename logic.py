@@ -3,7 +3,8 @@ from collections import defaultdict
 from translate import Translator
 
 # Tugas #5
-
+questions = {'siapa namamu' : "Aku adalah bot yang super keren dan diciptakan untuk membantumu!",
+             "berapa usiamu" : "Itu adalah pertanyaan yang sangat filosofis..."}
 class TextAnalysis():   
     
     # Tugas #1
@@ -17,6 +18,10 @@ class TextAnalysis():
 
         # Tugas #6
         self.response = self.get_answer()
+        if self.text.lower() in questions.keys():
+            self.response = questions [self.text.lower()]# dapatkan nilai untuk kunci [pesan teks dari pengguna]
+        else:
+            self.response = self.get_answer()
 
     
     def get_answer(self):
@@ -30,4 +35,5 @@ class TextAnalysis():
             translation = translator.translate(text)
             return translation
         except:
+
             return "Gagal menerjemahkan"
